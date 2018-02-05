@@ -2,14 +2,6 @@ In this exercise you will be using Redux Form to replicate the behavior of [a fo
                                                                                 
 To complete the exercise you should:                                            
                                                                                                                 
-* Start by creating a component which renders a static version of the form      
-* Add in Redux Form, and convert your HTML form fields to `<Field>` components  
-* Create synchronous validators which check that the Tracking Number field:     
-    * Contains a value                                                          
-    * The value is non-empty                                                    
-    * The value is be exactly 5 characters long                                 
-    * Each character is a number                                                
-* Add the validators to the field, and make sure the error messages display correctly
 * When the form is submitted, make a POST request to https://us-central1-delivery-form-api.cloudfunctions.net/api/report
     * The request body should be JSON, in the following format:                 
         ```js                                                                   

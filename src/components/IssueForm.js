@@ -1,39 +1,50 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+import { required, notEmpty, trackingNumberLength, validateTrackingNumber } from '../validators';
 import Input from './Input';
-import {required, notEmpty, trackingNumberLength, validateTrackingNumber} from '../validators';
 
-export class IssueForm extends React.Component{
-  console.log(this.props.meta);
-  return (
-    <div className="form-input">
-      <form>
+
+export class IssueForm extends React.Component {
+  onSubmit(values) {
+    console.log(values);
+  }
+  render() {
+    return (
+      <form
+        onSubmit={this.props.handleSubmit(values =>
+            this.onSubmit(values))}
+      >
         <label htmlFor="tracking-number">Tracking Number:</label>
-        <Field name="tracking-number" component={Input} validate={[required, notEmpty, trackingNumberLength, validateTrackingNumber]}/>
+        <Field name="tracking-number" component={Input} validate={[required, notEmpty, trackingNumberLength, validateTrackingNumber]} />
         <label htmlFor="issue">Issue:</label>
-        <Field name="issue" component="select" validate={[required]}>
+        <Field element="select" name="issue" component={Input} validate={[required]}>
+          <option value="" default disabled hidden>
+            Choose here
+          </option>
           <option value="not-delivered">
-              My delivery hasnt arrived
+                My delivery hasnt arrived
           </option>
           <option value="wrong-item">
-              The wrong item was delivered
+                The wrong item was delivered
           </option>
           <option value="missing-part">
-              Part of my order was missing
+                Part of my order was missing
           </option>
           <option value="damaged">
-              Some of my order arrived damaged
+                Some of my order arrived damaged
           </option>
           <option value="other">
-              Other (give details below)
+                Other (give details below)
           </option>
         </Field>
         <label htmlFor="details">Give more details (optional)</label>
-        <Field name="details" component="textarea" id="details"/>
+        <Field element="textarea" name="details" component={Input} id="details" />
         <button type="submit">Submit</button>
       </form>
-    </div>
-  );
+    );
+  }
 }
 
-export default reduxForm()(IssueForm);
+export default reduxForm({
+  form: 'issue',
+})(IssueForm);
