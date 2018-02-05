@@ -1,0 +1,25 @@
+In this exercise you will be using Redux Form to replicate the behavior of [a form for submitting complaints to a delivery company](http://delivery-form.netlify.com/).  The form uses both synchronous and asynchronous validation to make sure that the complaints are submitted in the correct format.
+                                                                                
+To complete the exercise you should:                                            
+                                                                                
+* Create a new React app using Create React App                                 
+* Start by creating a component which renders a static version of the form      
+* Add in Redux Form, and convert your HTML form fields to `<Field>` components  
+* Create synchronous validators which check that the Tracking Number field:     
+    * Contains a value                                                          
+    * The value is non-empty                                                    
+    * The value is be exactly 5 characters long                                 
+    * Each character is a number                                                
+* Add the validators to the field, and make sure the error messages display correctly
+* When the form is submitted, make a POST request to https://us-central1-delivery-form-api.cloudfunctions.net/api/report
+    * The request body should be JSON, in the following format:                 
+        ```js                                                                   
+        {                                                                       
+            "trackingNumber": "01234", // This should be a string - leading zeros are allowed
+            "issue": "not-delivered", // One of "not-delivered", "wrong-item", "missing-part", "damaged", or "other"
+            "details": "It wasn't delivered" // Optional                        
+        }                                                                       
+        ```                                                                     
+* If the request is successful, the form should display the success message     
+* If the request fails, the form should display an appropriate error            
+    * Requests for items with `trackingNumber` greater than 50000 will fail - you can use this for testing 
