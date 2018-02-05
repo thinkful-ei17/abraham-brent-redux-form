@@ -1,8 +1,7 @@
 In this exercise you will be using Redux Form to replicate the behavior of [a form for submitting complaints to a delivery company](http://delivery-form.netlify.com/).  The form uses both synchronous and asynchronous validation to make sure that the complaints are submitted in the correct format.
                                                                                 
 To complete the exercise you should:                                            
-                                                                                
-* Create a new React app using Create React App                                 
+                                                                                                                
 * Start by creating a component which renders a static version of the form      
 * Add in Redux Form, and convert your HTML form fields to `<Field>` components  
 * Create synchronous validators which check that the Tracking Number field:     
