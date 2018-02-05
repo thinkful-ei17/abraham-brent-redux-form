@@ -1,45 +1,37 @@
 import React from 'react';
-// import Input from './Input';
+import {Field, reduxForm} from 'redux-form';
+import Input from './Input';
 
-export default function IssueForm() {
+export function IssueForm() {
   return (
-    <form >
-      <div className="form-input">
-       <label htmlFor="trackingNumber">Tracking Number
-       </label>
-       <input name="trackingNumber" id="trackingNumber"/>
-     </div>
-     <div className="form-input">
-      <label htmlFor="issue">What is your issue?
-      </label>
-      <select name="issue" id="issue">
-        <option value="not-delivered">
-        My delivery hasnt arrived
-        </option>
-        <option value="wrong-item">
-        The wrong item was delivered
-        </option>
-        <option value="missing-part">
-        Part of my order was missing
-        </option>
-        <option value="damaged">
-        Some of my order arrived damaged
-        </option>
-        <option value="other">
-        Other (give details below)
-        </option>
-        </select>
-     </div>
-     <div className="form-input">
-      <label htmlFor="details">
-      Give more details(optional)
-      </label>
-      <textarea className="details" id="details">
-      </textarea>
-     </div> 
-     <button type="submit">
-     Submit
-     </button>          
-    </form>
-  )
+    <div className="form-input">
+      <form>
+          <label htmlFor="tracking-number">Tracking Number:</label>
+          <Field name="tracking-number" component={Input} />
+          <label htmlFor="issue">Issue:</label>
+          <Field name="issue" component="select" >
+            <option value="not-delivered">
+              My delivery hasnt arrived
+            </option>
+            <option value="wrong-item">
+              The wrong item was delivered
+            </option>
+            <option value="missing-part">
+              Part of my order was missing
+            </option>
+            <option value="damaged">
+              Some of my order arrived damaged
+            </option>
+            <option value="other">
+              Other (give details below)
+            </option>
+          </Field>
+          <label htmlFor="details">Give more details (optional)</label>
+          <Field name="details" component="textarea" id="details"/>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
+
+export default reduxForm()(IssueForm);
