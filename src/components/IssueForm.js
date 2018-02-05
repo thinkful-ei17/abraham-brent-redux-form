@@ -29,7 +29,17 @@ export default function IssueForm() {
         Other (give details below)
         </option>
         </select>
-     </div>         
+     </div>
+     <div className="form-input">
+      <label htmlFor="details">
+      Give more details(optional)
+      </label>
+      <textarea className="details" id="details">
+      </textarea>
+     </div> 
+     <button type="submit">
+     Submit
+     </button>          
     </form>
   )
 }
